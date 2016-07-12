@@ -122,4 +122,12 @@ public class Generator {
 	private static double demografischeFunktion(double x){
 		return x*x;
 	}
+
+	public static String generateStreetname() {
+		return "";
+	}
+
+	public static String generateCity() {
+		return "";
+	}
 }
