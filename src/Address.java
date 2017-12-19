@@ -4,13 +4,11 @@ public class Address {
     private String streetname;
     private int    housenumber;
     private String city;
-    private String country;
 
     public Address(Generator generator) {
-        housenumber = generateHousenumber();
         streetname = generator.generateStreetname();
+        housenumber = generateHousenumber();
         city = generator.generateCity();
-        country = "Germany";
     }
 
     private int generateHousenumber() {
@@ -21,24 +19,8 @@ public class Address {
         return housenumber;
     }
 
-    public String getStreetname() {
-        return streetname;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public int getHousenumber() {
-        return housenumber;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
     @Override
     public String toString() {
-        return "";
+        return streetname + " " + housenumber + ", " + city;
     }
 }

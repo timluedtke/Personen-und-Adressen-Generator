@@ -6,6 +6,7 @@ public class Human {
     private String  prename;
     private String  lastname;
     private int     birthyear;
+    private Address address;
 
     public Human(Generator generator) {
         Random randomGenerator = new Random();
@@ -16,11 +17,16 @@ public class Human {
             prename = generator.generateFemalePrename();
         }
         lastname = generator.generateLastname();
-        int age = randomGenerator.nextInt(90);
-        birthyear = Calendar.getInstance().get(Calendar.YEAR) - age;
+        birthyear = generateBirthyear(randomGenerator);
+        address = new Address(generator);
     }
 
-    public String getName() {
+    private int generateBirthyear(Random randomGenerator) {
+        int age = randomGenerator.nextInt(90);
+        return Calendar.getInstance().get(Calendar.YEAR) - age;
+    }
+
+    public String getFullName() {
         return prename + " " + lastname;
     }
 
@@ -35,5 +41,14 @@ public class Human {
         } else {
             return "weiblich";
         }
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    @Override
+    public String toString() {
+        return getFullName() + ", " + getGender() + ", " + getAge() + " Jahre alt. Wohnhaft " + address.toString();
     }
 }

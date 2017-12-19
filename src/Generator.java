@@ -7,14 +7,12 @@ public class Generator {
         fileReader.readFile("vornamen_mann.txt", 1);
         fileReader.readFile("vornamen_frau.txt", 2);
         fileReader.readFile("nachnamen.txt", 3);
+        fileReader.readFile("strassen.txt", 4);
+        fileReader.readFile("plz-ort.txt", 5);
     }
 
-	public Human generateHuman() {
-		return new Human(this);
-	}
-
-    public String generateFullName() {
-        return generateMalePrename() + " " + generateLastname();
+    public Human generateHuman() {
+        return new Human(this);
     }
 
     public String generateMalePrename() {
@@ -33,6 +31,18 @@ public class Generator {
         Random randomGenerator = new Random();
         int randomInt = randomGenerator.nextInt(fileReader.lastnamelist().length - 1);
         return fileReader.lastnamelist()[randomInt];
+    }
+
+    public String generateStreetname() {
+        Random randomGenerator = new Random();
+        int randomInt = randomGenerator.nextInt(fileReader.streetnameslist().length - 1);
+        return fileReader.streetnameslist()[randomInt];
+    }
+
+    public String generateCity() {
+        Random randomGenerator = new Random();
+        int randomInt = randomGenerator.nextInt(fileReader.plzcitylist().length - 1);
+        return fileReader.plzcitylist()[randomInt];
     }
 
     public int getDemografischesAlter(int startIndex, int stopIndex) {
@@ -57,13 +67,5 @@ public class Generator {
 
     private double demografischeFunktion(double x) {
         return x * x;
-    }
-
-    public String generateStreetname() {
-        return "";
-    }
-
-    public String generateCity() {
-        return "";
     }
 }

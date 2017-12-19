@@ -4,14 +4,14 @@ public class FileReader {
     private String[] malePrenamelist;
     private String[] femalePrenamelist;
     private String[] lastnamelist;
+    private String[] streetnameslist;
+    private String[] plzcitylist;
 
-    // nr: 1=malePrenamelist,
-    public void readFile(String filename, int nr) {
+    public void readFile(String filename, int switchCase) { //TODO remove this switchCase crap
         try {
-            String[] list;
-            java.io.FileReader fr;
-            fr = new java.io.FileReader(filename);
-            BufferedReader br = new BufferedReader(fr);
+            java.io.FileReader fileReader;
+            fileReader = new java.io.FileReader(filename);
+            BufferedReader br = new BufferedReader(fileReader);
             int lines = 0;
             while ( br.readLine() != null )
                 lines++;
@@ -21,7 +21,7 @@ public class FileReader {
             File fileDir = new File(filename);
             BufferedReader br2 = new BufferedReader(new InputStreamReader(new FileInputStream(fileDir), "UTF8"));
 
-            switch (nr) {
+            switch (switchCase) {
                 case 1:
                     if ( malePrenamelist == null || malePrenamelist.length <= 1 ) {
                         malePrenamelist = new String[lines];
@@ -29,8 +29,6 @@ public class FileReader {
                             malePrenamelist[i] = br2.readLine();
                         }
                         System.out.println(lines + " männliche Vornamen importiert.");
-                    } else {
-                        System.out.println("Liste 1 war bereits gefuellt.");
                     }
                     break;
                 case 2:
@@ -40,8 +38,6 @@ public class FileReader {
                             femalePrenamelist[i] = br2.readLine();
                         }
                         System.out.println(lines + " weibliche Vornamen importiert.");
-                    } else {
-                        System.out.println("Liste 1 war bereits gefüllt.");
                     }
                     break;
                 case 3:
@@ -50,9 +46,25 @@ public class FileReader {
                         for ( int i = 0; i < lines; i++ ) {
                             lastnamelist[i] = br2.readLine();
                         }
-                        System.out.println(lines + " Nachnamen importiert.\r\n");
-                    } else {
-                        System.out.println("Liste 2 war bereits gefüllt.");
+                    System.out.println(lines + " Nachnamen importiert.");
+                }
+                break;
+            case 4:
+                if ( streetnameslist == null || streetnameslist.length <= 1 ) {
+                    streetnameslist = new String[lines];
+                    for ( int i = 0; i < lines; i++ ) {
+                        streetnameslist[i] = br2.readLine();
+                    }
+                    System.out.println(lines + " Straßennamen importiert.");
+                }
+                break;
+            case 5:
+                if ( plzcitylist == null || plzcitylist.length <= 1 ) {
+                    plzcitylist = new String[lines];
+                    for ( int i = 0; i < lines; i++ ) {
+                        plzcitylist[i] = br2.readLine();
+                    }
+                    System.out.println(lines + " Cities importiert.\r\n");
                     }
                     break;
             }
@@ -74,5 +86,13 @@ public class FileReader {
 
     public String[] lastnamelist() {
         return lastnamelist;
+    }
+
+    public String[] streetnameslist() {
+        return streetnameslist;
+    }
+
+    public String[] plzcitylist() {
+        return plzcitylist;
     }
 }
