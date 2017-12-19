@@ -4,38 +4,41 @@ public class Address {
     private String streetname;
     private int    housenumber;
     private String city;
-    private String citycode;
     private String country;
 
-    public Address() {
+    public Address(Generator generator) {
         housenumber = generateHousenumber();
-        streetname = Generator.generateStreetname();
-        city = Generator.generateCity();
-        citycode = city.substring(0, 5);
-        city = city.substring(6, city.length());
+        streetname = generator.generateStreetname();
+        city = generator.generateCity();
+        country = "Germany";
     }
 
-    protected static int generateHousenumber() {
+    private int generateHousenumber() {
         Random randomGenerator = new Random();
-        int nr = (int) (Math.abs(randomGenerator.nextGaussian() * 30));
-        if ( nr < 1 )
-            nr = 1;
-        return nr;
+        int housenumber = (int) (Math.abs(randomGenerator.nextGaussian() * 30));
+        if ( housenumber < 1 )
+            housenumber = 1;
+        return housenumber;
     }
 
-    public int getHousenumber() {
-        return housenumber;
+    public String getStreetname() {
+        return streetname;
     }
 
     public String getCity() {
         return city;
     }
 
-    public String getCitycode() {
-        return citycode;
+    public int getHousenumber() {
+        return housenumber;
     }
 
-    public String getStreet() {
-        return streetname;
+    public String getCountry() {
+        return country;
+    }
+
+    @Override
+    public String toString() {
+        return "";
     }
 }

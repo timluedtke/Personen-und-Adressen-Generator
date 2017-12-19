@@ -7,15 +7,15 @@ public class Human {
     private String  lastname;
     private int     birthyear;
 
-    public Human() {
+    public Human(Generator generator) {
         Random randomGenerator = new Random();
         gender = randomGenerator.nextBoolean();
         if ( !gender ) {
-            prename = Generator.generateMalePrename();
+            prename = generator.generateMalePrename();
         } else {
-            prename = Generator.generateFemalePrename();
+            prename = generator.generateFemalePrename();
         }
-        lastname = Generator.generateLastname();
+        lastname = generator.generateLastname();
         int age = randomGenerator.nextInt(90);
         birthyear = Calendar.getInstance().get(Calendar.YEAR) - age;
     }
@@ -24,16 +24,16 @@ public class Human {
         return prename + " " + lastname;
     }
 
-    public String getGender() {
-        if ( !gender ) {
-            return "maennlich";
-        } else {
-            return "weiblich";
-        }
-    }
-
     public int getAge() {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         return year - birthyear;
+    }
+
+    public String getGender() {
+        if ( !gender ) {
+            return "männlich";
+        } else {
+            return "weiblich";
+        }
     }
 }
