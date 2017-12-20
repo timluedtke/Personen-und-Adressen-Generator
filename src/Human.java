@@ -8,17 +8,17 @@ public class Human {
     private int     birthyear;
     private Address address;
 
-    public Human(Generator generator) {
+    public Human(TupleGenerator tupleGenerator) {
         Random randomGenerator = new Random();
         gender = randomGenerator.nextBoolean();
         if ( !gender ) {
-            prename = generator.generateMalePrename();
+            prename = tupleGenerator.generateMalePrename();
         } else {
-            prename = generator.generateFemalePrename();
+            prename = tupleGenerator.generateFemalePrename();
         }
-        lastname = generator.generateLastname();
+        lastname = tupleGenerator.generateLastname();
         birthyear = generateBirthyear(randomGenerator);
-        address = new Address(generator);
+        address = new Address(tupleGenerator);
     }
 
     private int generateBirthyear(Random randomGenerator) {

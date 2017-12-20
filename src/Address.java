@@ -5,10 +5,10 @@ public class Address {
     private int    housenumber;
     private String city;
 
-    public Address(Generator generator) {
-        streetname = generator.generateStreetname();
+    public Address(TupleGenerator tupleGenerator) {
+        streetname = tupleGenerator.generateStreetname();
         housenumber = generateHousenumber();
-        city = generator.generateCity();
+        city = tupleGenerator.generateCity();
     }
 
     private int generateHousenumber() {

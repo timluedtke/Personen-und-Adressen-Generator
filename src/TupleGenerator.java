@@ -1,14 +1,25 @@
+import java.io.IOException;
 import java.util.Random;
 
-public class Generator {
+public class TupleGenerator {
     private FileReader fileReader = new FileReader();
 
-    public void prepareGeneration() {
-        fileReader.readFile("vornamen_mann.txt", 1);
-        fileReader.readFile("vornamen_frau.txt", 2);
-        fileReader.readFile("nachnamen.txt", 3);
-        fileReader.readFile("strassen.txt", 4);
-        fileReader.readFile("plz-ort.txt", 5);
+    private String[]   malePrenamelist;
+    private String[]   femalePrenamelist;
+    private String[]   lastnamelist;
+    private String[]   streetnameslist;
+    private String[]   plzcitylist;
+
+    public void prepare() {
+        try {
+            malePrenamelist = fileReader.readFile("data/vornamen_mann.txt");
+            femalePrenamelist = fileReader.readFile("data/vornamen_frau.txt");
+            lastnamelist = fileReader.readFile("data/nachnamen.txt");
+            streetnameslist = fileReader.readFile("data/strassen.txt");
+            plzcitylist = fileReader.readFile("data/plz-ort.txt");
+        } catch ( IOException e ) {
+            e.printStackTrace();
+        }
     }
 
     public Human generateHuman() {
@@ -17,35 +28,39 @@ public class Generator {
 
     public String generateMalePrename() {
         Random randomGenerator = new Random();
-        int randomInt = randomGenerator.nextInt(fileReader.malePrenamelist().length - 1);
-        return fileReader.malePrenamelist()[randomInt];
+        int randomInt = randomGenerator.nextInt(malePrenamelist.length - 1);
+        return malePrenamelist[randomInt];
     }
 
     public String generateFemalePrename() {
         Random randomGenerator = new Random();
-        int randomInt = randomGenerator.nextInt(fileReader.femalePrenamelist().length - 1);
-        return fileReader.femalePrenamelist()[randomInt];
+        int randomInt = randomGenerator.nextInt(femalePrenamelist.length - 1);
+        return femalePrenamelist[randomInt];
     }
 
     public String generateLastname() {
         Random randomGenerator = new Random();
-        int randomInt = randomGenerator.nextInt(fileReader.lastnamelist().length - 1);
-        return fileReader.lastnamelist()[randomInt];
+        int randomInt = randomGenerator.nextInt(lastnamelist.length - 1);
+        return lastnamelist[randomInt];
     }
 
     public String generateStreetname() {
         Random randomGenerator = new Random();
-        int randomInt = randomGenerator.nextInt(fileReader.streetnameslist().length - 1);
-        return fileReader.streetnameslist()[randomInt];
+        int randomInt = randomGenerator.nextInt(streetnameslist.length - 1);
+        return streetnameslist[randomInt];
     }
 
     public String generateCity() {
         Random randomGenerator = new Random();
-        int randomInt = randomGenerator.nextInt(fileReader.plzcitylist().length - 1);
-        return fileReader.plzcitylist()[randomInt];
+        int randomInt = randomGenerator.nextInt(plzcitylist.length - 1);
+        return plzcitylist[randomInt];
     }
 
-    public int getDemografischesAlter(int startIndex, int stopIndex) {
+    private double demografischeFunktion(double x) {
+        return x * x;
+    }
+
+    private int getDemografischesAlter(int startIndex, int stopIndex) {
         //Generate a random number whose value ranges from 0.0 to the sum of the values of yourFunction for all the possible integer return values from startIndex to stopIndex.
         double randomMultiplier = 0;
         for ( int i = startIndex; i <= stopIndex; i++ ) {
@@ -63,9 +78,5 @@ public class Generator {
         }
         //System.out.println(yourFunctionRandomNumber);
         return yourFunctionRandomNumber;
-    }
-
-    private double demografischeFunktion(double x) {
-        return x * x;
     }
 }
