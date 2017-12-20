@@ -13,10 +13,10 @@ public class Address {
 
     private int generateHousenumber() {
         Random randomGenerator = new Random();
-        int housenumber = (int) (Math.abs(randomGenerator.nextGaussian() * 30));
-        if ( housenumber < 1 )
+        int housenumber = (int) (Math.abs(randomGenerator.nextGaussian() * 30.0));
+        if ( housenumber == 0 )
             housenumber = 1;
-        return housenumber;
+        return Math.abs(housenumber);
     }
 
     @Override

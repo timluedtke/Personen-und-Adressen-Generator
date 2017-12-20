@@ -28,3 +28,6 @@ Generiert zufällige Personen mit folgenden Eigenschaften:
 18. Jutta Laskowski, weiblich, 74 Jahre alt. Wohnhaft Slebuschstieg 27, 29472 Damnatz
 19. Linde Rauch, weiblich, 15 Jahre alt. Wohnhaft Soltauer Chaussee 4, 47509 Rheurdt
 20. Wilhelma Pätzold, weiblich, 59 Jahre alt. Wohnhaft Idarwaldstraße 4, 56581 Ehlscheid
+
+## Erweiterungsideen
+* csv Export
